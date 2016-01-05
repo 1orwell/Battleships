@@ -1,18 +1,9 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.Writer;
-import java.io.PrintWriter;
-import java.io.OutputStreamWriter;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
-import java.util.List;
+import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class TextUserInterface implements UserInterface
 {
@@ -53,4 +44,22 @@ public class TextUserInterface implements UserInterface
 
     }
 
+    public void displayCell(String cell)
+    {
+        System.out.print(cell);
+    }
+
 }
+
+
+//Imports that will be needed later.
+//import java.io.BufferedWriter;
+//import java.io.File;
+//import java.io.Writer;
+//import java.io.PrintWriter;
+//import java.io.OutputStreamWriter;
+//import java.io.FileOutputStream;
+//import java.io.FileWriter;
+//import java.io.InputStreamReader;
+//import java.util.List;
+//import java.util.Scanner;
