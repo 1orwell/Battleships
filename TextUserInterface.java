@@ -44,9 +44,43 @@ public class TextUserInterface implements UserInterface
 
     }
 
-    public void displayCell(String cell)
+    public void displayRow(Row row)
     {
-        System.out.print(cell);
+        for (String cell : row.getRowArray())
+        {
+            System.out.print("|");
+            System.out.print(cell);
+            System.out.print("| ");
+        }
+        System.out.println("\n ------------------------------------------");
+    }
+
+    public void displayBoard(Row row1, Row row2, Row row3, Row row4, Row row5,
+                Row row6, Row row7, Row row8, Row row9, Row row10)
+    {
+        UserInterface ui = new TextUserInterface();
+        System.out.print("    |A| |B| |C| |D| |E| |F| |G| |H| |I| |J|");
+        System.out.println("\n ------------------------------------------");
+        System.out.print("1 | ");
+        ui.displayRow(row1);
+        System.out.print("2 | ");
+        ui.displayRow(row2);
+        System.out.print("3 | ");
+        ui.displayRow(row3);
+        System.out.print("4 | ");
+        ui.displayRow(row4);
+        System.out.print("5 | ");
+        ui.displayRow(row5);
+        System.out.print("6 | ");
+        ui.displayRow(row6);
+        System.out.print("7 | ");
+        ui.displayRow(row7);
+        System.out.print("8 | ");
+        ui.displayRow(row8);
+        System.out.print("9 | ");
+        ui.displayRow(row9);
+        System.out.print("10| ");
+        ui.displayRow(row10);
     }
 
 }
