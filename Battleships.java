@@ -1,51 +1,198 @@
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Arrays;
 
 public class Battleships
 {
 
     private static UserInterface ui = new TextUserInterface();
+    private static String[][] player1Board = new String[10][10];
+    private static String[][] player2Board = new String[10][10];
 
-    private static Board player1Board = new Board();
-    private static Board player2Board = new Board();
+    public static void getShipPosition(int player)
+    {
+        ArrayList<String> ship = ui.getBattleship();
+        String cellNotUsuable = ship.get(0);
+        String length = ship.get(1);
+        String orientation = ship.get(2);
+        String[] splited = cellNotUsuable.split("\\s+");
+        String row = splited[0];
+        String column = splited[1];
+    }
 
-    private static Row player1Row1 = player1Board.getRow1();
-    private static Row player1Row2 = player1Board.getRow2();
-    private static Row player1Row3 = player1Board.getRow3();
-    private static Row player1Row4 = player1Board.getRow4();
-    private static Row player1Row5 = player1Board.getRow5();
-    private static Row player1Row6 = player1Board.getRow6();
-    private static Row player1Row7 = player1Board.getRow7();
-    private static Row player1Row8 = player1Board.getRow8();
-    private static Row player1Row9 = player1Board.getRow9();
-    private static Row player1Row10 = player1Board.getRow10();
-
-    private static Row player2Row1 = player2Board.getRow1();
-    private static Row player2Row2 = player2Board.getRow2();
-    private static Row player2Row3 = player2Board.getRow3();
-    private static Row player2Row4 = player2Board.getRow4();
-    private static Row player2Row5 = player2Board.getRow5();
-    private static Row player2Row6 = player2Board.getRow6();
-    private static Row player2Row7 = player2Board.getRow7();
-    private static Row player2Row8 = player2Board.getRow8();
-    private static Row player2Row9 = player2Board.getRow9();
-    private static Row player2Row10 = player2Board.getRow10();
-
-    public static void initiatePlayer1()
+    public static void initiateGame()
     {
         ui.clearScreen();
         ui.displayASCII();
+    }
+
+    public static void initiatePlayer1()
+    {
+        for (int i=0; i<10; i++)
+        {
+            for (int j=0; j<10; j++)
+            {
+                player1Board[i][j] = " - ";
+            }
+        }
+
         ui.displayPlayer1();
         ui.displayBoard(player1Board);
-        ArrayList<String> ship = ui.getBattleship();
-        String cell = ship.get(0);
-        String length = ship.get(1);
-        String orientation = ship.get(2);
-        //player1Row3.setG("-");
+    }
+
+    public static Map<String, String> getMap()
+    {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("1A", "0 0");
+        map.put("1B", "1 0");
+        map.put("1C", "2 0");
+        map.put("1D", "3 0");
+        map.put("1E", "4 0");
+        map.put("1F", "5 0");
+        map.put("1G", "6 0");
+        map.put("1H", "7 0");
+        map.put("1I", "8 0");
+        map.put("1J", "9 0");
+
+        map.put("2A", "0 1");
+        map.put("2B", "1 1");
+        map.put("2C", "2 1");
+        map.put("2D", "3 1");
+        map.put("2E", "4 1");
+        map.put("2F", "5 1");
+        map.put("2G", "6 1");
+        map.put("2H", "7 1");
+        map.put("2I", "8 1");
+        map.put("2J", "9 1");
+
+        map.put("3A", "0 2");
+        map.put("3B", "1 2");
+        map.put("3C", "2 2");
+        map.put("3D", "3 2");
+        map.put("3E", "4 2");
+        map.put("3F", "5 2");
+        map.put("3G", "6 2");
+        map.put("3H", "7 2");
+        map.put("3I", "8 2");
+        map.put("3J", "9 2");
+
+        map.put("4A", "0 3");
+        map.put("4B", "1 3");
+        map.put("4C", "2 3");
+        map.put("4D", "3 3");
+        map.put("4E", "4 3");
+        map.put("4F", "5 3");
+        map.put("4G", "6 3");
+        map.put("4H", "7 3");
+        map.put("4I", "8 3");
+        map.put("4J", "9 3");
+
+        map.put("5A", "0 4");
+        map.put("5B", "1 4");
+        map.put("5C", "2 4");
+        map.put("5D", "3 4");
+        map.put("5E", "4 4");
+        map.put("5F", "5 4");
+        map.put("5G", "6 4");
+        map.put("5H", "7 4");
+        map.put("5I", "8 4");
+        map.put("5J", "9 4");
+
+        map.put("6A", "0 5");
+        map.put("6B", "1 5");
+        map.put("6C", "2 5");
+        map.put("6D", "3 5");
+        map.put("6E", "4 5");
+        map.put("6F", "5 5");
+        map.put("6G", "6 5");
+        map.put("6H", "7 5");
+        map.put("6I", "8 5");
+        map.put("6J", "9 5");
+
+        map.put("7A", "0 6");
+        map.put("7B", "1 6");
+        map.put("7C", "2 6");
+        map.put("7D", "3 6");
+        map.put("7E", "4 6");
+        map.put("7F", "5 6");
+        map.put("7G", "6 6");
+        map.put("7H", "7 6");
+        map.put("7I", "8 6");
+        map.put("7J", "9 6");
+
+        map.put("8A", "0 7");
+        map.put("8B", "1 7");
+        map.put("8C", "2 7");
+        map.put("8D", "3 7");
+        map.put("8E", "4 7");
+        map.put("8F", "5 7");
+        map.put("8G", "6 7");
+        map.put("8H", "7 7");
+        map.put("8I", "8 7");
+        map.put("8J", "9 7");
+
+        map.put("9A", "0 8");
+        map.put("9B", "1 8");
+        map.put("9C", "2 8");
+        map.put("9D", "3 8");
+        map.put("9E", "4 8");
+        map.put("9F", "5 8");
+        map.put("9G", "6 8");
+        map.put("9H", "7 8");
+        map.put("9I", "8 8");
+        map.put("9J", "9 8");
+
+        map.put("10A", "0 9");
+        map.put("10B", "1 9");
+        map.put("10C", "2 9");
+        map.put("10D", "3 9");
+        map.put("10E", "4 9");
+        map.put("10F", "5 9");
+        map.put("10G", "6 9");
+        map.put("10H", "7 9");
+        map.put("10I", "8 9");
+        map.put("10J", "9 9");
+
+
+        return map;
+    }
+
+    public static void getPlayer1Ships()
+    {
+        Map<String, String> map = getMap();
+        for (int i=0; i<3; i++)
+        {
+            ArrayList<String> ship = ui.getBattleship();
+            String cell = ship.get(0);
+            int length = Integer.parseInt(ship.get(1));
+            String oritentation = ship.get(2);
+            String[] position = map.get(cell).split("\\s+");
+            int rowInt = Integer.parseInt(position[0]);
+            int columnInt = Integer.parseInt(position[1]);
+            player1Board[rowInt][columnInt] = " - ";
+            for (int j=1; j<length; j++)
+            {
+                if (oritentation.equals("v"))
+                {
+                    columnInt++;
+                    player1Board[rowInt][columnInt] = " X ";
+                }
+                else
+                {
+                    rowInt++;
+                    player1Board[rowInt][columnInt] = " X ";
+                }
+            }
+        }
+        ui.displayBoard(player1Board);
     }
 
     public static void main(String args[])
     {
+        initiateGame();
         initiatePlayer1();
+        getPlayer1Ships();
     }
 
 

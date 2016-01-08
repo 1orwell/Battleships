@@ -4,7 +4,7 @@ public interface UserInterface {
 
     public void displayASCII();
     public void displayRow(Row row);
-    public void displayBoard(Board board);
+    public void displayBoard(String[][] board);
     public void clearScreen();
     public void displayPlayer1();
     public void displayPlayer2();
