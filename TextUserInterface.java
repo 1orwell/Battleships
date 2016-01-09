@@ -161,13 +161,27 @@ public class TextUserInterface implements UserInterface
         System.out.println("Would you like it to fill 2, 3 or 4 cells?");
         int length = getIntInput();
         String lengthStr = Integer.toString(length);
-        System.out.println("Would you like it to be verical(v) or horizontal(h)?");
-        String orientation = getStringInput();
+        boolean validInput = false;
+        String orientation = "";
+        while (!validInput)
+        {
+            System.out.println("Would you like it to be verical(v) or horizontal(h)?");
+            orientation = getStringInput();
+            if (orientation.equals("v") || orientation.equals("h"))
+            {
+                validInput = true;
+            }
+        }
         ArrayList<String> ship = new ArrayList<String>();
         ship.add(cell); // first cell of ship
         ship.add(lengthStr); // length of ship
         ship.add(orientation); // whether ship is vertical or horizontal
         return ship;
+    }
+
+    public void displayOutOfRange()
+    {
+        System.out.println("The ship you entered would not fit on the board. Please try again.");
     }
 
 }

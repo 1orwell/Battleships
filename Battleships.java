@@ -161,27 +161,55 @@ public class Battleships
     public static void getPlayer1Ships()
     {
         Map<String, String> map = getMap();
-        for (int i=0; i<3; i++)
+        boolean validShip = false;
+        while (!validShip)
         {
-            ArrayList<String> ship = ui.getBattleship();
-            String cell = ship.get(0);
-            int length = Integer.parseInt(ship.get(1));
-            String oritentation = ship.get(2);
-            String[] position = map.get(cell).split("\\s+");
-            int rowInt = Integer.parseInt(position[0]);
-            int columnInt = Integer.parseInt(position[1]);
-            player1Board[rowInt][columnInt] = " - ";
-            for (int j=1; j<length; j++)
+            for (int i=0; i<3; i++)
             {
-                if (oritentation.equals("v"))
+                boolean validInput = false;
+                while (!validInput)
                 {
-                    columnInt++;
+                    ArrayList<String> ship = ui.getBattleship();
+                    String cell = ship.get(0);
+                    int length = Integer.parseInt(ship.get(1));
+                    String oritentation = ship.get(2);
+                    String[] position = map.get(cell).split("\\s+");
+                    int rowInt = Integer.parseInt(position[0]);
+                    int columnInt = Integer.parseInt(position[1]);
                     player1Board[rowInt][columnInt] = " X ";
-                }
-                else
-                {
-                    rowInt++;
-                    player1Board[rowInt][columnInt] = " X ";
+                    for (int j=1; j<length; j++)
+                    {
+                        if (oritentation.equals("h"))
+                        {
+                            validInput = true;
+                            rowInt++;
+                            if (rowInt > 9)
+                            {
+                                ui.displayOutOfRange();
+                                i--;
+                            }
+                            else
+                            {
+                                validShip = true;
+                                player1Board[rowInt][columnInt] = " X ";
+                            }
+                        }
+                        else
+                        {
+                            validInput = true;
+                            columnInt++;
+                            if (columnInt > 9)
+                            {
+                                ui.displayOutOfRange();
+                                i--;
+                            }
+                            else
+                            {
+                                validShip = true;
+                                player1Board[rowInt][columnInt] = " X ";
+                            }
+                        }
+                    }
                 }
             }
         }
