@@ -176,7 +176,6 @@ public class Battleships
                     String[] position = map.get(cell).split("\\s+");
                     int columnInt = Integer.parseInt(position[0]);
                     int rowInt = Integer.parseInt(position[1]);
-                    //player1Board[rowInt][columnInt] = " X ";
                     int[] validCells = new int[10];
                     int validCellsIndex = 0;
                     for (int j=0; j<length; j++)
@@ -187,7 +186,6 @@ public class Battleships
                             if (columnInt+length > 11)
                             {
                                 int num = columnInt+length;
-                                System.out.println("ColumnInt + length = " + num); 
                                 ui.displayOutOfRange();
                                 i--;
                                 break;
@@ -205,7 +203,6 @@ public class Battleships
                             if (rowInt+length > 11)
                             {
                                 int num = rowInt+length;
-                                System.out.println("RowInt + length = " + num); 
                                 ui.displayOutOfRange();
                                 i--;
                                 break;
