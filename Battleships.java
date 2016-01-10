@@ -174,40 +174,48 @@ public class Battleships
                     int length = Integer.parseInt(ship.get(1));
                     String oritentation = ship.get(2);
                     String[] position = map.get(cell).split("\\s+");
-                    int rowInt = Integer.parseInt(position[0]);
-                    int columnInt = Integer.parseInt(position[1]);
-                    player1Board[rowInt][columnInt] = " X ";
-                    for (int j=1; j<length; j++)
+                    int columnInt = Integer.parseInt(position[0]);
+                    int rowInt = Integer.parseInt(position[1]);
+                    //player1Board[rowInt][columnInt] = " X ";
+                    int[] validCells = new int[10];
+                    int validCellsIndex = 0;
+                    for (int j=0; j<length; j++)
                     {
                         if (oritentation.equals("h"))
                         {
                             validInput = true;
-                            rowInt++;
-                            if (rowInt > 9)
+                            if (columnInt+length > 11)
                             {
+                                int num = columnInt+length;
+                                System.out.println("ColumnInt + length = " + num); 
                                 ui.displayOutOfRange();
                                 i--;
+                                break;
                             }
                             else
                             {
                                 validShip = true;
-                                player1Board[rowInt][columnInt] = " X ";
+                                player1Board[columnInt][rowInt] = " X ";
                             }
+                            columnInt++;
                         }
                         else
                         {
                             validInput = true;
-                            columnInt++;
-                            if (columnInt > 9)
+                            if (rowInt+length > 11)
                             {
+                                int num = rowInt+length;
+                                System.out.println("RowInt + length = " + num); 
                                 ui.displayOutOfRange();
                                 i--;
+                                break;
                             }
                             else
                             {
                                 validShip = true;
-                                player1Board[rowInt][columnInt] = " X ";
+                                player1Board[columnInt][rowInt] = " X ";
                             }
+                            rowInt++;
                         }
                     }
                 }
