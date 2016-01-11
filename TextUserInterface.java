@@ -184,6 +184,23 @@ public class TextUserInterface implements UserInterface
         System.out.println("The ship you entered would not fit on the board. Please try again.");
     }
 
+    public void isReady()
+    {
+        boolean isReady = false;
+        while (!isReady)
+        {
+            System.out.println("Are you ready for the board to be cleared so player2 can enter their ships?");
+            String ready = "";
+            ready = getStringInput();
+            System.out.println("ready: "+ready);
+            if (ready.equals("yes") || ready.equals("y"))
+            {
+                isReady = true;
+            }
+        }
+
+    }
+
 }
 
 

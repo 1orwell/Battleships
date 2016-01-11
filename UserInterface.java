@@ -10,5 +10,6 @@ public interface UserInterface {
     public void displayPlayer2();
     public ArrayList<String> getBattleship();
     public void displayOutOfRange();
+    public void isReady();
 
 }

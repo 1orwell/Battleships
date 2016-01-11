@@ -227,11 +227,18 @@ public class Battleships
         ui.displayBoard(playerBoard);
     }
 
+    public static void isPlayer2Ready()
+    {
+        ui.isReady();
+        ui.clearScreen();
+    }
+
     public static void main(String args[])
     {
         initiateGame();
         initiatePlayer(player1Board, 1);
         getPlayersShips(player1Board);
+        isPlayer2Ready();
         initiatePlayer(player2Board, 2);
         getPlayersShips(player2Board);
     }
