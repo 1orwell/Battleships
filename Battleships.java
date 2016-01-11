@@ -27,18 +27,24 @@ public class Battleships
         ui.displayASCII();
     }
 
-    public static void initiatePlayer1()
+    public static void initiatePlayer(String[][] playerBoard, int player)
     {
         for (int i=0; i<10; i++)
         {
             for (int j=0; j<10; j++)
             {
-                player1Board[i][j] = " - ";
+                playerBoard[i][j] = " - ";
             }
         }
-
-        ui.displayPlayer1();
-        ui.displayBoard(player1Board);
+        if (player == 1)
+        {
+            ui.displayPlayer1();
+        }
+        else
+        {
+            ui.displayPlayer2();
+        }
+        ui.displayBoard(playerBoard);
     }
 
     public static Map<String, String> getMap()
@@ -158,25 +164,7 @@ public class Battleships
         return map;
     }
 
-    public static int[] processInput(int changingIndex, int ConstantIndex, int length, int i)
-    {
-        if (changingIndex+length > 11)
-        {
-            int num = changingIndex+length;
-            ui.displayOutOfRange();
-            i--;
-            break;
-        }
-        else
-        {
-            validShip = true;
-
-            player1Board[columnInt][rowInt] = " X ";
-        }
-        columnInt++;
-    }
-
-    public static void getPlayer1Ships()
+    public static void getPlayersShips(String[][] playerBoard)
     {
         Map<String, String> map = getMap();
         boolean validShip = false;
@@ -201,12 +189,6 @@ public class Battleships
                         if (oritentation.equals("h"))
                         {
                             validInput = true;
-
-                            int[] indexes = processInput(columnInt, length, i);
-                            i = indexes[0];
-                            columnInt = indexes[1];
-
-
                             if (columnInt+length > 11)
                             {
                                 int num = columnInt+length;
@@ -217,7 +199,7 @@ public class Battleships
                             else
                             {
                                 validShip = true;
-                                player1Board[columnInt][rowInt] = " X ";
+                                playerBoard[columnInt][rowInt] = " X ";
                             }
                             columnInt++;
                         }
@@ -234,7 +216,7 @@ public class Battleships
                             else
                             {
                                 validShip = true;
-                                player1Board[columnInt][rowInt] = " X ";
+                                playerBoard[columnInt][rowInt] = " X ";
                             }
                             rowInt++;
                         }
@@ -242,14 +224,16 @@ public class Battleships
                 }
             }
         }
-        ui.displayBoard(player1Board);
+        ui.displayBoard(playerBoard);
     }
 
     public static void main(String args[])
     {
         initiateGame();
-        initiatePlayer1();
-        getPlayer1Ships();
+        initiatePlayer(player1Board, 1);
+        getPlayersShips(player1Board);
+        initiatePlayer(player2Board, 2);
+        getPlayersShips(player2Board);
     }
 
 
