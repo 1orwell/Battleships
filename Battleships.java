@@ -158,6 +158,24 @@ public class Battleships
         return map;
     }
 
+    public static int[] processInput(int changingIndex, int ConstantIndex, int length, int i)
+    {
+        if (changingIndex+length > 11)
+        {
+            int num = changingIndex+length;
+            ui.displayOutOfRange();
+            i--;
+            break;
+        }
+        else
+        {
+            validShip = true;
+
+            player1Board[columnInt][rowInt] = " X ";
+        }
+        columnInt++;
+    }
+
     public static void getPlayer1Ships()
     {
         Map<String, String> map = getMap();
@@ -183,6 +201,12 @@ public class Battleships
                         if (oritentation.equals("h"))
                         {
                             validInput = true;
+
+                            int[] indexes = processInput(columnInt, length, i);
+                            i = indexes[0];
+                            columnInt = indexes[1];
+
+
                             if (columnInt+length > 11)
                             {
                                 int num = columnInt+length;
