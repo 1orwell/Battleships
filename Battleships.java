@@ -232,6 +232,62 @@ public class Battleships
         ui.isReady();
     }
 
+    public static void playGame()
+    {
+        int turns = 1;
+        boolean gameOver = false;
+        while (!gameOver)
+        {
+            ui.clearScreen();
+            if (turns%2 == 1)
+            {
+                String guess = ui.getGuess(1);
+                if (guess.equals("exit"))
+                {
+                    gameOver = true;
+                }
+                String[] guessArray = guess.split("");
+                int columnInt = Integer.parseInt(guessArray[0]);
+                int rowInt = Integer.parseInt(guessArray[1]);
+                if (player2Board[columnInt][rowInt].equals(" X "))
+                {
+                    player2Board[columnInt][rowInt] = " . ";
+                    ui.displayCorrectGuess();
+                }
+                else
+                {
+                    ui.displayWrongGuess();
+                }
+                turns++;
+                ui.isReady();
+                ui.clearScreen();
+            }
+            else
+            {
+                String guess = ui.getGuess(1);
+                if (guess.equals("exit"))
+                {
+                    gameOver = true;
+                }
+                String[] guessArray = guess.split("");
+                int columnInt = Integer.parseInt(guessArray[0]);
+                int rowInt = Integer.parseInt(guessArray[1]);
+                if (player1Board[columnInt][rowInt].equals(" X "))
+                {
+                    player1Board[columnInt][rowInt] = " . ";
+                    ui.displayCorrectGuess();
+                }
+                else
+                {
+                    ui.displayWrongGuess();
+                }
+                turns++;
+                ui.isReady();
+                ui.clearScreen();
+            }
+        }
+    }
+
     public static void main(String args[])
     {
         initiateGame();
@@ -241,6 +297,7 @@ public class Battleships
         initiateGame();
         initiatePlayer(player2Board, 2);
         getPlayersShips(player2Board);
+        playGame();
     }
 
 

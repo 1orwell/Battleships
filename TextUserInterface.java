@@ -201,6 +201,31 @@ public class TextUserInterface implements UserInterface
 
     }
 
+    public String getGuess(int player)
+    {
+        if (player == 1)
+        {
+            System.out.println("Hello player1.");
+        }
+        else
+        {
+            System.out.println("Hello player2.");
+        }
+        System.out.println("What guess would you like to make? You guess should be of the form 2F.");
+        String guess = getStringInput();
+        return guess;
+    }
+
+    public void displayCorrectGuess()
+    {
+        System.out.println("Well done! You hit a ship!");
+    }
+
+    public void displayWrongGuess()
+    {
+        System.out.println("Unlucky. You didn't hit a ship this time.");
+    }
+
 }
 
 
