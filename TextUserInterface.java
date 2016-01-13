@@ -189,7 +189,7 @@ public class TextUserInterface implements UserInterface
         boolean isReady = false;
         while (!isReady)
         {
-            System.out.println("Are you ready for the board to be cleared so player2 can enter their ships?");
+            System.out.println("Are you ready for the screen to be cleared?");
             String ready = "";
             ready = getStringInput();
             System.out.println("ready: "+ready);
@@ -201,16 +201,21 @@ public class TextUserInterface implements UserInterface
 
     }
 
-    public String getGuess(int player)
+    public void greatPlayer(int player)
     {
         if (player == 1)
         {
-            System.out.println("Hello player1.");
+            System.out.println("Hello player1. This is your board: ");
         }
         else
         {
-            System.out.println("Hello player2.");
+            System.out.println("Hello player2. This is your board: ");
         }
+    }
+
+
+    public String getGuess()
+    {
         System.out.println("What guess would you like to make? You guess should be of the form 2F.");
         String guess = getStringInput();
         return guess;

@@ -170,7 +170,7 @@ public class Battleships
         boolean validShip = false;
         while (!validShip)
         {
-            for (int i=0; i<3; i++)
+            for (int i=0; i<1; i++)
             {
                 boolean validInput = false;
                 while (!validInput)
@@ -227,13 +227,14 @@ public class Battleships
         ui.displayBoard(playerBoard);
     }
 
-    public static void isPlayer2Ready()
+    public static void isReadyToClear()
     {
         ui.isReady();
     }
 
     public static void playGame()
     {
+        Map<String, String> map = getMap();
         int turns = 1;
         boolean gameOver = false;
         while (!gameOver)
@@ -241,17 +242,19 @@ public class Battleships
             ui.clearScreen();
             if (turns%2 == 1)
             {
-                String guess = ui.getGuess(1);
+                ui.greatPlayer(1);
+                ui.displayBoard(player1Board);
+                String guess = ui.getGuess();
+                String[] guessArray = map.get(guess).split("\\s+");
+                int columnInt = Integer.parseInt(guessArray[0]);
+                int rowInt = Integer.parseInt(guessArray[1]);
                 if (guess.equals("exit"))
                 {
                     gameOver = true;
                 }
-                String[] guessArray = guess.split("");
-                int columnInt = Integer.parseInt(guessArray[0]);
-                int rowInt = Integer.parseInt(guessArray[1]);
                 if (player2Board[columnInt][rowInt].equals(" X "))
                 {
-                    player2Board[columnInt][rowInt] = " . ";
+                    player2Board[columnInt][rowInt] = " O ";
                     ui.displayCorrectGuess();
                 }
                 else
@@ -264,17 +267,19 @@ public class Battleships
             }
             else
             {
-                String guess = ui.getGuess(1);
+                ui.greatPlayer(2);
+                ui.displayBoard(player2Board);
+                String guess = ui.getGuess();
+                String[] guessArray = map.get(guess).split("\\s+");
+                int columnInt = Integer.parseInt(guessArray[0]);
+                int rowInt = Integer.parseInt(guessArray[1]);
                 if (guess.equals("exit"))
                 {
                     gameOver = true;
                 }
-                String[] guessArray = guess.split("");
-                int columnInt = Integer.parseInt(guessArray[0]);
-                int rowInt = Integer.parseInt(guessArray[1]);
                 if (player1Board[columnInt][rowInt].equals(" X "))
                 {
-                    player1Board[columnInt][rowInt] = " . ";
+                    player1Board[columnInt][rowInt] = " O ";
                     ui.displayCorrectGuess();
                 }
                 else
@@ -293,10 +298,11 @@ public class Battleships
         initiateGame();
         initiatePlayer(player1Board, 1);
         getPlayersShips(player1Board);
-        isPlayer2Ready();
+        isReadyToClear();
         initiateGame();
         initiatePlayer(player2Board, 2);
         getPlayersShips(player2Board);
+        isReadyToClear();
         playGame();
     }
 
