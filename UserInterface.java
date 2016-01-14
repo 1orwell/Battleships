@@ -15,5 +15,6 @@ public interface UserInterface {
     public String getGuess();
     public void displayCorrectGuess();
     public void displayWrongGuess();
+    public void displayWinner(String winner);
 
 }

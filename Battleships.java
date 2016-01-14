@@ -251,7 +251,7 @@ public class Battleships
         return gameOver;
     }
 
-    public static void playGame()
+    public static String playGame()
     {
         Map<String, String> map = getMap();
         int turns = 1;
@@ -283,7 +283,7 @@ public class Battleships
                     //System.out.println("game over");
                     gameOver = true;
                     winner = "Player1";
-                    return;
+                    return winner;
                 }
                 ui.isReady();
                 ui.clearScreen();
@@ -314,13 +314,14 @@ public class Battleships
                 {
                     gameOver = true;
                     winner = "Player2";
-                    return;
+                    return winner;
                     //System.out.println("game over");
                 }
                 ui.isReady();
                 ui.clearScreen();
             }
         }
+        return winner;
     }
 
     public static void main(String args[])
@@ -333,7 +334,8 @@ public class Battleships
         initiatePlayer(player2Board, 2);
         getPlayersShips(player2Board);
         isReadyToClear();
-        playGame();
+        String winner = playGame();
+        ui.displayWinner(winner);
     }
 
 

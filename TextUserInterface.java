@@ -231,16 +231,9 @@ public class TextUserInterface implements UserInterface
         System.out.println("Unlucky. You didn't hit a ship this time.");
     }
 
+    public void displayWinner(String winner)
+    {
+        System.out.println("Congratulations "+winner+". You won!");
+    }
+
 }
-
-
-//Imports that will be needed later.
-//import java.io.BufferedWriter;
-//import java.io.File;
-//import java.io.Writer;
-//import java.io.PrintWriter;
-//import java.io.OutputStreamWriter;
-//import java.io.FileOutputStream;
-//import java.io.FileWriter;
-//import java.io.InputStreamReader;
-//import java.util.List;
