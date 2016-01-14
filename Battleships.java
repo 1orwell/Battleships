@@ -232,11 +232,31 @@ public class Battleships
         ui.isReady();
     }
 
+    public static boolean contains(String[][] board)
+    {
+        boolean gameOver = false;
+        for (int i=0; i<10; i++)
+        {
+            String[] row = board[i];
+            if (Arrays.asList(row).contains(" X "))
+            {
+                gameOver = false;
+                return gameOver;
+            }
+            else
+            {
+                gameOver = true;
+            }
+        }
+        return gameOver;
+    }
+
     public static void playGame()
     {
         Map<String, String> map = getMap();
         int turns = 1;
         boolean gameOver = false;
+        String winner = "";
         while (!gameOver)
         {
             ui.clearScreen();
@@ -248,10 +268,6 @@ public class Battleships
                 String[] guessArray = map.get(guess).split("\\s+");
                 int columnInt = Integer.parseInt(guessArray[0]);
                 int rowInt = Integer.parseInt(guessArray[1]);
-                if (guess.equals("exit"))
-                {
-                    gameOver = true;
-                }
                 if (player2Board[columnInt][rowInt].equals(" X "))
                 {
                     player2Board[columnInt][rowInt] = " O ";
@@ -262,6 +278,13 @@ public class Battleships
                     ui.displayWrongGuess();
                 }
                 turns++;
+                if (contains(player2Board))
+                {
+                    //System.out.println("game over");
+                    gameOver = true;
+                    winner = "Player1";
+                    return;
+                }
                 ui.isReady();
                 ui.clearScreen();
             }
@@ -287,6 +310,13 @@ public class Battleships
                     ui.displayWrongGuess();
                 }
                 turns++;
+                if (contains(player1Board))
+                {
+                    gameOver = true;
+                    winner = "Player2";
+                    return;
+                    //System.out.println("game over");
+                }
                 ui.isReady();
                 ui.clearScreen();
             }
