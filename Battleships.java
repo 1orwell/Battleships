@@ -9,6 +9,8 @@ public class Battleships
     private static UserInterface ui = new TextUserInterface();
     private static String[][] player1Board = new String[10][10];
     private static String[][] player2Board = new String[10][10];
+    private static String[][] player1GuessBoard = new String[10][10];
+    private static String[][] player2GuessBoard = new String[10][10];
 
     public static void getShipPosition(int player)
     {
@@ -27,7 +29,7 @@ public class Battleships
         ui.displayASCII();
     }
 
-    public static void initiatePlayer(String[][] playerBoard, int player)
+    public static void initiatePlayer(String[][] playerBoard, int player, String great)
     {
         for (int i=0; i<10; i++)
         {
@@ -36,16 +38,19 @@ public class Battleships
                 playerBoard[i][j] = " - ";
             }
         }
-        if (player == 1)
+        if (great.equals("great"))
         {
-            ui.displayPlayer1();
+            if (player == 1)
+            {
+                ui.greatPlayer(1);
+            }
+            else
+            {
+                ui.greatPlayer(2);
+            }
         }
-        else
-        {
-            ui.displayPlayer2();
-        }
-        ui.displayBoard(playerBoard);
     }
+
 
     public static Map<String, String> getMap()
     {
@@ -262,7 +267,8 @@ public class Battleships
             ui.clearScreen();
             if (turns%2 == 1)
             {
-                ui.greatPlayer(1);
+                //ui.greatPlayer(1);
+                ui.displayBoard(player1GuessBoard);
                 ui.displayBoard(player1Board);
                 String guess = ui.getGuess();
                 String[] guessArray = map.get(guess).split("\\s+");
@@ -271,16 +277,17 @@ public class Battleships
                 if (player2Board[columnInt][rowInt].equals(" X "))
                 {
                     player2Board[columnInt][rowInt] = " O ";
+                    player1GuessBoard[columnInt][rowInt] = " Y ";
                     ui.displayCorrectGuess();
                 }
                 else
                 {
+                    player1GuessBoard[columnInt][rowInt] = " N ";
                     ui.displayWrongGuess();
                 }
                 turns++;
                 if (contains(player2Board))
                 {
-                    //System.out.println("game over");
                     gameOver = true;
                     winner = "Player1";
                     return winner;
@@ -290,23 +297,22 @@ public class Battleships
             }
             else
             {
-                ui.greatPlayer(2);
+                //ui.greatPlayer(2);
+                ui.displayBoard(player2GuessBoard);
                 ui.displayBoard(player2Board);
                 String guess = ui.getGuess();
                 String[] guessArray = map.get(guess).split("\\s+");
                 int columnInt = Integer.parseInt(guessArray[0]);
                 int rowInt = Integer.parseInt(guessArray[1]);
-                if (guess.equals("exit"))
-                {
-                    gameOver = true;
-                }
                 if (player1Board[columnInt][rowInt].equals(" X "))
                 {
                     player1Board[columnInt][rowInt] = " O ";
+                    player2GuessBoard[columnInt][rowInt] = " Y ";
                     ui.displayCorrectGuess();
                 }
                 else
                 {
+                    player2GuessBoard[columnInt][rowInt] = " N ";
                     ui.displayWrongGuess();
                 }
                 turns++;
@@ -315,7 +321,6 @@ public class Battleships
                     gameOver = true;
                     winner = "Player2";
                     return winner;
-                    //System.out.println("game over");
                 }
                 ui.isReady();
                 ui.clearScreen();
@@ -327,19 +332,23 @@ public class Battleships
     public static void main(String args[])
     {
         initiateGame();
-        initiatePlayer(player1Board, 1);
+        String great = "great";
+        initiatePlayer(player1Board, 1, great);
+        great = "notGreat";
+        initiatePlayer(player1GuessBoard, 1, great);
+        ui.displayBoard(player1Board);
         getPlayersShips(player1Board);
         isReadyToClear();
         initiateGame();
-        initiatePlayer(player2Board, 2);
+        great = "great";
+        initiatePlayer(player2Board, 2, great);
+        great = "notGreat";
+        initiatePlayer(player2GuessBoard, 2, great);
+        ui.displayBoard(player2Board);
         getPlayersShips(player2Board);
         isReadyToClear();
         String winner = playGame();
         ui.displayWinner(winner);
     }
-
-
-
-
 
 }

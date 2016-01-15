@@ -130,16 +130,6 @@ public class TextUserInterface implements UserInterface
         System.out.flush();
     }
 
-    public void displayPlayer1()
-    {
-        System.out.println("Hello player1, this is your board.");
-    }
-
-    public void displayPlayer2()
-    {
-        System.out.println("Hello player2, this is your board.");
-    }
-
     public String getStringInput() {
         Scanner user_input = new Scanner(System.in);
         String input = user_input.next();
