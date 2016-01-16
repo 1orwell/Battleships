@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Map;
 
 
 public class TextUserInterface implements UserInterface
@@ -145,13 +146,76 @@ public class TextUserInterface implements UserInterface
 
     public ArrayList<String> getBattleship()
     {
-        System.out.println("Which cell would you like one of your battleships to start in?");
-        System.out.println("Write it like '2F' if you want to fill cell 2F");
-        String cell = getStringInput();
-        System.out.println("Would you like it to fill 2, 3 or 4 cells?");
-        int length = getIntInput();
-        String lengthStr = Integer.toString(length);
         boolean validInput = false;
+        ArrayList<String> possibleLetters = new ArrayList<String>();
+        possibleLetters.add("A");
+        possibleLetters.add("B");
+        possibleLetters.add("C");
+        possibleLetters.add("D");
+        possibleLetters.add("E");
+        possibleLetters.add("F");
+        possibleLetters.add("G");
+        possibleLetters.add("H");
+        possibleLetters.add("I");
+        possibleLetters.add("J");
+        ArrayList<String> possibleNumbers = new ArrayList<String>();
+        possibleNumbers.add("1");
+        possibleNumbers.add("2");
+        possibleNumbers.add("3");
+        possibleNumbers.add("4");
+        possibleNumbers.add("5");
+        possibleNumbers.add("6");
+        possibleNumbers.add("7");
+        possibleNumbers.add("8");
+        possibleNumbers.add("9");
+        possibleNumbers.add("10");
+        String cell = "";
+        System.out.println("Which cell would you like one of your battleships to start in?");
+        while (!validInput)
+        {
+            System.out.println("Write it like '2F' if you want to fill cell 2F");
+            cell = getStringInput();
+            String[] cellArray = cell.split("(?!^)");
+            if (cellArray.length == 3 && cellArray[0].equals("1") && cellArray[1].equals("0"))
+            {
+                if (possibleLetters.contains(cellArray[2]))
+                {
+                    validInput = true;
+                }
+            }
+            else if (cellArray.length == 2)
+            {
+                if (possibleNumbers.contains(cellArray[0]) && possibleLetters.contains(cellArray[1]))
+                {
+                    validInput = true;
+                }
+            }
+            if (!validInput)
+            {
+                System.out.println("You did not enter a valid input, please try again.");
+            }
+        }
+        validInput = false;
+        ArrayList<Integer> possibleLengths = new ArrayList<Integer>();
+        possibleLengths.add(2);
+        possibleLengths.add(3);
+        possibleLengths.add(4);
+        String lengthStr = "";
+        while (!validInput)
+        {
+            System.out.println("Would you like it to fill 2, 3 or 4 cells?");
+            int length = getIntInput();
+            if (possibleLengths.contains(length))
+            {
+                validInput = true;
+                lengthStr = Integer.toString(length);
+            }
+            if (!validInput)
+            {
+                System.out.println("You did not enter a valid input, please try again.");
+            }
+        }
+        validInput = false;
         String orientation = "";
         while (!validInput)
         {
@@ -160,6 +224,10 @@ public class TextUserInterface implements UserInterface
             if (orientation.equals("v") || orientation.equals("h"))
             {
                 validInput = true;
+            }
+            if (!validInput)
+            {
+                System.out.println("You did not enter a valid input, please try again.");
             }
         }
         ArrayList<String> ship = new ArrayList<String>();

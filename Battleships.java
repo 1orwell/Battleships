@@ -297,7 +297,6 @@ public class Battleships
             }
             else
             {
-                //ui.greatPlayer(2);
                 ui.displayBoard(player2GuessBoard);
                 ui.displayBoard(player2Board);
                 String guess = ui.getGuess();
