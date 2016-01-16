@@ -175,6 +175,7 @@ public class TextUserInterface implements UserInterface
         {
             System.out.println("Write it like '2F' if you want to fill cell 2F");
             cell = getStringInput();
+            cell = cell.toUpperCase();
             String[] cellArray = cell.split("(?!^)");
             if (cellArray.length == 3 && cellArray[0].equals("1") && cellArray[1].equals("0"))
             {
