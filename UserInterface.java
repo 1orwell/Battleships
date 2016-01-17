@@ -6,8 +6,8 @@ public interface UserInterface {
     public void displayRow(Row row);
     public void displayBoard(String[][] board);
     public void clearScreen();
-    //public void displayPlayer1();
-    //public void displayPlayer2();
+    public ArrayList<String> getPossibleLetters();
+    public ArrayList<String> getPossibleNumbers();
     public ArrayList<String> getBattleship();
     public void displayOutOfRange();
     public void isReady();

@@ -144,9 +144,8 @@ public class TextUserInterface implements UserInterface
         return input;
     }
 
-    public ArrayList<String> getBattleship()
+    public ArrayList<String> getPossibleLetters()
     {
-        boolean validInput = false;
         ArrayList<String> possibleLetters = new ArrayList<String>();
         possibleLetters.add("A");
         possibleLetters.add("B");
@@ -158,6 +157,11 @@ public class TextUserInterface implements UserInterface
         possibleLetters.add("H");
         possibleLetters.add("I");
         possibleLetters.add("J");
+        return possibleLetters;
+    }
+
+    public ArrayList<String> getPossibleNumbers()
+    {
         ArrayList<String> possibleNumbers = new ArrayList<String>();
         possibleNumbers.add("1");
         possibleNumbers.add("2");
@@ -169,6 +173,14 @@ public class TextUserInterface implements UserInterface
         possibleNumbers.add("8");
         possibleNumbers.add("9");
         possibleNumbers.add("10");
+        return possibleNumbers;
+    }
+
+    public ArrayList<String> getBattleship()
+    {
+        boolean validInput = false;
+        ArrayList<String> possibleLetters = getPossibleLetters();
+        ArrayList<String> possibleNumbers = getPossibleNumbers();
         String cell = "";
         System.out.println("Which cell would you like one of your battleships to start in?");
         while (!validInput)
@@ -275,8 +287,35 @@ public class TextUserInterface implements UserInterface
 
     public String getGuess()
     {
-        System.out.println("What guess would you like to make? You guess should be of the form 2F.");
-        String guess = getStringInput();
+        ArrayList<String> possibleLetters = getPossibleLetters();
+        ArrayList<String> possibleNumbers = getPossibleNumbers();
+        boolean validInput = false;
+        String guess = "";
+        while (!validInput)
+        {
+            System.out.println("What guess would you like to make? You guess should be of the form 2F.");
+            guess = getStringInput();
+            guess = guess.toUpperCase();
+            String[] guessArray = guess.split("(?!^)");
+            if (guessArray.length == 3 && guessArray[0].equals("1") && guessArray[1].equals("0"))
+            {
+                if (possibleLetters.contains(guessArray[2]))
+                {
+                    validInput = true;
+                }
+            }
+            else if (guessArray.length == 2)
+            {
+                if (possibleNumbers.contains(guessArray[0]) && possibleLetters.contains(guessArray[1]))
+                {
+                    validInput = true;
+                }
+            }
+            if (!validInput)
+            {
+                System.out.println("You did not enter a valid input, please try again.");
+            }
+        }
         return guess;
     }
 
