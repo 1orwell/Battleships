@@ -6,11 +6,12 @@ import java.util.Arrays;
 public class Battleships
 {
 
+    private static int boardSize = Constants.BOARD_SIZE;
     private static UserInterface ui = new TextUserInterface();
-    private static String[][] player1Board = new String[10][10];
-    private static String[][] player2Board = new String[10][10];
-    private static String[][] player1GuessBoard = new String[10][10];
-    private static String[][] player2GuessBoard = new String[10][10];
+    private static String[][] player1Board = new String[boardSize][boardSize];
+    private static String[][] player2Board = new String[boardSize][boardSize];
+    private static String[][] player1GuessBoard = new String[boardSize][boardSize];
+    private static String[][] player2GuessBoard = new String[boardSize][boardSize];
 
     public static void getShipPosition(int player)
     {
@@ -31,9 +32,9 @@ public class Battleships
 
     public static void initiatePlayer(String[][] playerBoard, int player, String great)
     {
-        for (int i=0; i<10; i++)
+        for (int i=0; i<boardSize; i++)
         {
-            for (int j=0; j<10; j++)
+            for (int j=0; j<boardSize; j++)
             {
                 playerBoard[i][j] = " - ";
             }
@@ -187,7 +188,7 @@ public class Battleships
                     String[] position = map.get(cell).split("\\s+");
                     int columnInt = Integer.parseInt(position[0]);
                     int rowInt = Integer.parseInt(position[1]);
-                    int[] validCells = new int[10];
+                    int[] validCells = new int[boardSize];
                     int validCellsIndex = 0;
                     for (int j=0; j<length; j++)
                     {
@@ -240,7 +241,7 @@ public class Battleships
     public static boolean contains(String[][] board)
     {
         boolean gameOver = false;
-        for (int i=0; i<10; i++)
+        for (int i=0; i<boardSize; i++)
         {
             String[] row = board[i];
             if (Arrays.asList(row).contains(" X "))
