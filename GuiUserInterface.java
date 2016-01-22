@@ -29,13 +29,13 @@ public class GuiUserInterface
                 {
 
                 }
-                else if (column==0 && row==0)
+                else if (column==0 && row==0 || column==12 && row==0)
                 {
                     JButton b = new JButton("");
                     b.setBounds(5, 5, 50, 50); // x axis, y axis, width, height
                     f.add(b);
                 }
-                else if (column==0 && row != 0)
+                else if (column==0 && row != 0 || column==12 && row!=0)
                 {
                     String jString = Integer.toString(row);
                     JButton b = new JButton(jString);
@@ -51,7 +51,7 @@ public class GuiUserInterface
                     }
                     else
                     {
-                        letter = Integer.toString(column);
+                        letter = letters[column-12];
                     }
                     JButton b = new JButton(letter);
                     b.setBounds(xIndex, 5, 50, 50); // x axis, y axis, width, height
