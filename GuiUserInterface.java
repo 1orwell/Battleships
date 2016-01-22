@@ -25,20 +25,24 @@ public class GuiUserInterface
                 letters[7] = "H";
                 letters[8] = "I";
                 letters[9] = "J";
-                if (column==0 && row==0)
+                if (column == 11)
+                {
+
+                }
+                else if (column==0 && row==0)
                 {
                     JButton b = new JButton("");
                     b.setBounds(5, 5, 50, 50); // x axis, y axis, width, height
                     f.add(b);
                 }
-                if (column==0 && row != 0)
+                else if (column==0 && row != 0)
                 {
                     String jString = Integer.toString(row);
                     JButton b = new JButton(jString);
                     b.setBounds(5, yIndex, 50, 50); // x axis, y axis, width, height
                     f.add(b);
                 }
-                if (row==0 && column != 0)
+                else if (row==0 && column != 0)
                 {
                     String letter = "";
                     if (column<11)
@@ -53,9 +57,12 @@ public class GuiUserInterface
                     b.setBounds(xIndex, 5, 50, 50); // x axis, y axis, width, height
                     f.add(b);
                 }
-                JButton b = new JButton("-");
-                b.setBounds(xIndex, yIndex, 50, 50); // x axis, y axis, width, height
-                f.add(b);
+                else
+                {
+                    JButton b = new JButton("-");
+                    b.setBounds(xIndex, yIndex, 50, 50); // x axis, y axis, width, height
+                    f.add(b);
+                }
             }
         }
         f.setLayout(null);
