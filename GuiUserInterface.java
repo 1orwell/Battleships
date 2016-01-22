@@ -6,14 +6,14 @@ public class GuiUserInterface
     public static void main(String[] args)
     {
         JFrame f = new JFrame();
-        f.setSize(800, 800);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        f.setSize(1400, 800);
         for (int row=0; row<11; row++)
         {
-            for (int column=0; column<11; column++)
+            for (int column=0; column<23; column++)
             {
-                System.out.println("row: " + row+". column: "+column);
-                int xIndex = (column*70)+5;
-                int yIndex = (row*70)+5;
+                int xIndex = (column*60)+5;
+                int yIndex = (row*60)+5;
                 String[] letters = new String[11];
                 letters[0] = "A";
                 letters[1] = "B";
@@ -40,8 +40,15 @@ public class GuiUserInterface
                 }
                 if (row==0 && column != 0)
                 {
-                    System.out.println("row: "+Integer.toString(row) + ". column: "+Integer.toString(column-1));
-                    String letter = letters[column-1];
+                    String letter = "";
+                    if (column<11)
+                    {
+                        letter = letters[column-1];
+                    }
+                    else
+                    {
+                        letter = Integer.toString(column);
+                    }
                     JButton b = new JButton(letter);
                     b.setBounds(xIndex, 5, 50, 50); // x axis, y axis, width, height
                     f.add(b);
