@@ -6,7 +6,13 @@ public class GuiUserInterface
 
     public void displayASCII()
     {
-
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        f.setSize(1400, 800);
+        JLabel title = new JLabel("MASTERMIND");
+        JButton b = new JButton("");
+        title.setBounds(700, 5, 350, 350); // x axis, y axis, width, height
+        f.add(title);
     }
 
     public void displayRow(Row row)
