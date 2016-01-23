@@ -43,11 +43,11 @@ public class Battleships
         {
             if (player == 1)
             {
-                ui.greatPlayer(1);
+                ui.greetPlayer(1);
             }
             else
             {
-                ui.greatPlayer(2);
+                ui.greetPlayer(2);
             }
         }
     }

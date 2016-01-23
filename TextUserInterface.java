@@ -131,13 +131,15 @@ public class TextUserInterface implements UserInterface
         System.out.flush();
     }
 
-    public String getStringInput() {
+    public String getStringInput()
+    {
         Scanner user_input = new Scanner(System.in);
         String input = user_input.next();
         return input;
     }
 
-    public int getIntInput() {
+    public int getIntInput()
+    {
         Scanner user_input = new Scanner(System.in);
         String strInput = user_input.next();
         int input = Integer.parseInt(strInput);
@@ -272,7 +274,7 @@ public class TextUserInterface implements UserInterface
 
     }
 
-    public void greatPlayer(int player)
+    public void greetPlayer(int player)
     {
         if (player == 1)
         {

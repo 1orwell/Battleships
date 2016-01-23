@@ -11,7 +11,7 @@ public interface UserInterface {
     public ArrayList<String> getBattleship();
     public void displayOutOfRange();
     public void isReady();
-    public void greatPlayer(int player);
+    public void greetPlayer(int player);
     public String getGuess();
     public void displayCorrectGuess();
     public void displayWrongGuess();
