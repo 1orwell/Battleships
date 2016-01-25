@@ -92,7 +92,7 @@ public class GuiUserInterface
 
     }
 
-    public void clearScreen()
+    /**public void clearScreen()
     {
 
     }
@@ -156,6 +156,7 @@ public class GuiUserInterface
     {
 
     }
+    **/
 
     public static void main(String[] args)
     {
@@ -222,5 +223,5 @@ public class GuiUserInterface
         f.setLayout(null);
         f.setVisible(true); // make the frame visible
     }
-
+    }
 }
